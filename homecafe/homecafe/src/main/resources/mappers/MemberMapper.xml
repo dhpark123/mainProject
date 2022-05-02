@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.homecafe.mapper.MemberMapper">
+    <sql id="memberColumns">
+        idx,
+        name,
+        area,
+        phone_number,
+        manager_yn,
+        insert_member,
+        delete_member,
+        insert_time,
+        update_time,
+        visit_cnt
+    </sql>
+
+    <insert id="insertMember" parameterType="MemberDTO">
+        INSERT INTO member (
+            <include refid="memberColumns"/>
+        ) VALUES (
+            #{idx},
+            #{name},
+            #{area},
+            #{phone_number},
+            IFNULL(#{manager_yn}, 'N'),
+            NOW(),
+            NULL,
+            'N',
+            NOW(),
+            NULL,
+            0
+    </insert>
+
+    <select id="selectMemberDetail" parameterType="long" resultType="MemberDTO">
+        SELECT
+            <include refid="memberColumns"/>
+        FROM
+            member
+        WHERE
+            delete_yn='N'
+            manager_yn='N'
+        AND
+            idx=#{idx}
+    </select>
+
+    <update id="updateMember" parameterType="MemberDTO">
+        UPDATE
+            member
+        SET
+            update_time = NOW(),
+            name = #{name},
+            area = #{area},
+            phone_number = #{phone_number},
+            manager_yn = IFNULL(#{manager_yn}, 'N'})
+        WHERE
+            idx = #{idx}
+    </update>
+
+    <update id="deleteMember" parameterType="long">
+        UPDATE
+            member
+        SET
+            delete_yn = 'Y',
+            delete_member = NOW()
+        WHERE
+            idx = #{idx}
+    </update>
+
+    <select id="selectMenuList" parameterType="MemberDTO" resultType="MemberDTO">
+        SELECT
+            <include refid="memberColumns"/>
+        FROM
+            member
+        WHERE
+            delete_yn = 'N'
+        ORDER BY
+            manager_yn ASC,
+            idx DESC,
+            insert_time DESC;
+    </select>
+
+    <select id="selectMenuTotalCount" parameterType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            member
+        WHERE
+            delete_yn = 'N'
+    </select>
+</mapper>
