@@ -5,7 +5,12 @@
     <title>Home Cafe</title>
 </head>
 <body>
-    <a href="@{/member/login}">Login</a>
-    <a href="@{/member/join}">Join</a>
+
+<!--memberList에 있으면, 보여주지 않기 없으면, 나의 정보 확인 버튼-->
+<div class="member">
+    <a th:href="@{/member/login}">Login</a>
+    <a th:href="@{/member/join}">Join</a>
+</div>
+
 </body>
 </html>

@@ -6,5 +6,32 @@
 </head>
 <body>
 
+<form name="joinForm" th:action="@{/member/memJoin}" th:object="${member}" method="post" >
+    <div class="joinInput"><br>
+        <label for="id">아이디 : </label>
+        <input type="text" th:field="*{id}" placeholder="아이디를 입력해주세요."/>
+    </div>
+    <div class="joinInput"><br>
+        <label for="">패스워드 :</label>
+        <input type="text" th:field="*{pw}" placeholder="패스워드를 입력해주세요."/>
+    </div>
+    <div class="joinInput"><br>
+        <label for="name">이름 :</label>
+        <input type="text" th:field="*{name}" placeholder="이름을 입력해주세요."/>
+    </div>
+    <div class="joinInput"><br>
+        <label for="area">사는 지역 :</label>
+        <input type="text" th:field="*{area}" placeholder="사는 지역을 입력해주세요."/>
+    </div>
+    <div class="joinInput"><br>
+        <label for="phoneNumber">핸드폰 번호 :</label>
+        <input type="tel" th:field="*{phoneNumber}" placeholder="핸드폰 번호를 입력해주세요."/>
+    </div>
+    <div class="joinInput"><br>
+        <label for="managerYn">관리자의 경우 체크 :</label>
+        <input type="checkbox" th:value="*{managerYn}" th:checked="*{#strings.equals( managerYn, 'Y')}"/>
+    </div><br>
+    <button type="submit">가입</button>
+</form>
 </body>
 </html>

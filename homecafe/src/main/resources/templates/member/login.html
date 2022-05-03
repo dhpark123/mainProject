@@ -5,8 +5,11 @@
     <title>Login Page</title>
 </head>
 <body>
-<form name="login">
-
+<form name="login" th:action="@{/home}">
+    <input type="text" placeholder="ID"/>
+    <input type="text" placeholder="Password"/>
+    <button type="submit">로그인</button>
+    <a th:href="@{/home}">뒤로가기</a>
 </form>
 
 </body>

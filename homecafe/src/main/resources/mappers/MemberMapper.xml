@@ -3,6 +3,8 @@
 <mapper namespace="project.homecafe.mapper.MemberMapper">
     <sql id="memberColumns">
         idx,
+        id,
+        pw,
         name,
         area,
         phone_number,
@@ -19,6 +21,8 @@
             <include refid="memberColumns"/>
         ) VALUES (
             #{idx},
+            #{id},
+            #{pw},
             #{name},
             #{area},
             #{phone_number},
@@ -48,6 +52,8 @@
             member
         SET
             update_time = NOW(),
+            id = #{id},
+            pw = #{pw},
             name = #{name},
             area = #{area},
             phone_number = #{phone_number},

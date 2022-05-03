@@ -9,10 +9,12 @@ import java.time.LocalDateTime;
 @Setter
 public class MemberDTO {
     private Long idx;
+    private String id;
+    private String pw;
     private String name;
     private String area;
     private String phoneNumber;
-    private String mangerYn;
+    private String managerYn;
     private LocalDateTime insertMember;
     private LocalDateTime deleteMember;
     private String deleteYn;
